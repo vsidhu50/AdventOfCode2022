@@ -71,9 +71,9 @@ public class Day7
             }
         }
 
-        calcSizes(root);
+        CalcSizes(root);
 
-        return sumLimit(100000, root);
+        return SumLimit(100000, root);
     }
 
     public static int PartTwo()
@@ -141,12 +141,12 @@ public class Day7
             }
         }
 
-        calcSizes(root);
+        CalcSizes(root);
 
         var unusedSpace = 70000000 - root._size;
         var minDelete = 30000000 - unusedSpace;
 
-        return minLimit(minDelete, root);
+        return MinLimit(minDelete, root);
     }
 
     public class Item
@@ -165,31 +165,31 @@ public class Day7
         }
     }
 
-    public static int calcSizes(Item curr)
+    public static int CalcSizes(Item curr)
     {
         if (curr._children != null)
         {
-            curr._size = curr._children.Values.Sum(x => calcSizes(x));
+            curr._size = curr._children.Values.Sum(x => CalcSizes(x));
             return curr._size;
         }
         return curr._size;
     }
 
-    public static int sumLimit(int limit, Item curr)
+    public static int SumLimit(int limit, Item curr)
     {
         if (curr._children != null && curr._size <= limit)
-            return curr._size + curr._children.Values.Sum(x => sumLimit(limit, x));
+            return curr._size + curr._children.Values.Sum(x => SumLimit(limit, x));
         else if (curr._children != null && curr._size > limit)
-            return curr._children.Values.Sum(x => sumLimit(limit, x));
+            return curr._children.Values.Sum(x => SumLimit(limit, x));
         return 0;
     }
 
-    public static int minLimit(int limit, Item curr)
+    public static int MinLimit(int limit, Item curr)
     {
         if (curr._children != null && curr._size >= limit)
-            return int.Min(curr._size, curr._children.Values.Min(x => minLimit(limit, x)));
+            return int.Min(curr._size, curr._children.Values.Min(x => MinLimit(limit, x)));
         else if (curr._children != null && curr._size > limit)
-            return curr._children.Values.Min(x => minLimit(limit, x));
+            return curr._children.Values.Min(x => MinLimit(limit, x));
         return int.MaxValue;
     }
 }
