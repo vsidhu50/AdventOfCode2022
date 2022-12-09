@@ -165,7 +165,7 @@ public class Day7
         }
     }
 
-    public static int CalcSizes(Item curr)
+    private static int CalcSizes(Item curr)
     {
         if (curr._children != null)
         {
@@ -175,7 +175,7 @@ public class Day7
         return curr._size;
     }
 
-    public static int SumLimit(int limit, Item curr)
+    private static int SumLimit(int limit, Item curr)
     {
         if (curr._children != null && curr._size <= limit)
             return curr._size + curr._children.Values.Sum(x => SumLimit(limit, x));
@@ -184,7 +184,7 @@ public class Day7
         return 0;
     }
 
-    public static int MinLimit(int limit, Item curr)
+    private static int MinLimit(int limit, Item curr)
     {
         if (curr._children != null && curr._size >= limit)
             return int.Min(curr._size, curr._children.Values.Min(x => MinLimit(limit, x)));

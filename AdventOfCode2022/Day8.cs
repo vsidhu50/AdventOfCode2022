@@ -39,7 +39,7 @@ public class Day8
         return max;
     }
 
-    public static bool IsVisible(int row, int col, int numRows, int numCols, int[,] grid)
+    private static bool IsVisible(int row, int col, int numRows, int numCols, int[,] grid)
     {
         var tree = grid[row, col];
 
@@ -63,7 +63,7 @@ public class Day8
 
     }
 
-    public static int ScenicScore(int row, int col, int numRows, int numCols, int[,] grid)
+    private static int ScenicScore(int row, int col, int numRows, int numCols, int[,] grid)
     {
         var tree = grid[row, col];
 
